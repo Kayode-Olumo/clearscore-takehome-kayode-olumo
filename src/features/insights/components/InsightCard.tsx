@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { Card, Pill, Drawer } from "@/ui";
 import type { Insight } from "../lib/types";
+import { fetchInsightDetails } from "@/lib/api";
 
 type InsightDetails = {
   title: string;
@@ -22,14 +23,13 @@ export default function InsightCard({ insight }: { insight: Insight }) {
   const handleExpand = async () => {
     if (!insight.canExpand) return;
     setOpen(true);
+
     if (!details && insight.id === "electoralRoll") {
       try {
         setLoading(true);
         setError(null);
-        // 👉 Replace with real fetch if needed
-        const res = await fetch("https://api.jsonbin.io/v3/b/6128c389c5159b35ae04d4ed/1?meta=false");
-        if (!res.ok) throw new Error("Failed to load details");
-        const data = (await res.json()) as InsightDetails;
+        // 🔽 Client-side call -> api.ts -> http.ts (axios)
+        const data = await fetchInsightDetails();
         setDetails(data);
       } catch (e: any) {
         setError(e?.message ?? "Failed to load details");
@@ -78,26 +78,22 @@ export default function InsightCard({ insight }: { insight: Insight }) {
         {loading && <p className="text-cs-14 text-ink-muted">Loading…</p>}
         {error && <p className="text-cs-14 text-red-600">{error}</p>}
 
-        {!loading && !error && (
+        {!loading && !error && details && (
           <>
             <h4 className="text-cs-16 font-bold text-midnight mb-cs-8">
-              {details?.title ?? insight.title}
+              {details.title}
             </h4>
             <p className="text-cs-14 leading-5 text-ink-muted mb-cs-16">
-              {details
-                ? (isOn ? details.onTrackDescription : details.offTrackDescription)
-                : "More information…"}
+              {isOn ? details.onTrackDescription : details.offTrackDescription}
             </p>
-            {details?.details?.length ? (
-              <div className="space-y-cs-16">
-                {details.details.map((sec, i) => (
-                  <section key={i}>
-                    <h5 className="text-cs-16 font-bold text-midnight mb-cs-8">{sec.title}</h5>
-                    <p className="text-cs-14 leading-5 text-ink-muted">{sec.description}</p>
-                  </section>
-                ))}
-              </div>
-            ) : null}
+            <div className="space-y-cs-16">
+              {details.details.map((sec, i) => (
+                <section key={i}>
+                  <h5 className="text-cs-16 font-bold text-midnight mb-cs-8">{sec.title}</h5>
+                  <p className="text-cs-14 leading-5 text-ink-muted">{sec.description}</p>
+                </section>
+              ))}
+            </div>
           </>
         )}
       </Drawer>
