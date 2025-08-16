@@ -45,7 +45,6 @@ export default function InsightCard({ insight }: { insight: Insight }) {
           <Pill tone="gray">{insight.impact}</Pill>
         </div>
 
-        {/* Title 16/bold/20px lh */}
         <h3
           className="
             text-[16px] leading-[20px] font-bold
@@ -57,12 +56,10 @@ export default function InsightCard({ insight }: { insight: Insight }) {
           {insight.title}
         </h3>
 
-        {/* Body 14/20px lh muted */}
         <p className="text-cs-14 leading-5 text-ink-muted">
           {insight.body}
         </p>
 
-        {/* Optional action */}
         {insight.canExpand && (
           <button
             onClick={handleExpand}
