@@ -9,7 +9,13 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
       <div className="large:hidden">
         <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-8 horizontal-scroll [-webkit-overflow-scrolling:touch]">
           {insights.map((i) => (
-            <div key={i.id} className="snap-start shrink-0 min-w-[calc(50%-8px)] medium:min-w-[44%]">
+            <div
+              key={i.id}
+              className="
+                snap-start shrink-0
+                min-w-[46%] medium:min-w-[44%]   /* ~2 cards visible + peek */
+              "
+            >
               <div className="h-full">
                 <InsightCard insight={i} />
               </div>

@@ -6,13 +6,17 @@ type PillProps = {
   className?: string;
 };
 
-const base =
-  "uppercase tracking-[0.4px] text-cs-12 font-normal rounded-cs-sm h-4 leading-4 px-2 inline-flex items-center text-center";
+const base = `
+  inline-flex items-center justify-center text-center
+  h-4 leading-4 px-2 rounded-cs-sm
+  text-[12px] font-normal tracking-[0.4px] uppercase
+  font-clarity
+`;
 
-const tones = {
-  green: "text-pill-green-text bg-pill-green-bg",
+const tones: Record<NonNullable<PillProps["tone"]>, string> = {
+  green:  "text-pill-green-text bg-pill-green-bg",
   orange: "text-pill-orange-text bg-pill-orange-bg",
-  gray: "text-midnight/70 bg-pill-gray-bg",
+  gray:   "text-midnight/70 bg-pill-gray-bg",
 };
 
 export default function Pill({ tone = "gray", children, className }: PillProps) {
