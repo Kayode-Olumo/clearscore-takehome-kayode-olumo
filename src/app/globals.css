@@ -98,3 +98,10 @@ body {
     border-radius: 8px;
   }
 }
+
+/* Custom drawer width for larger screens */
+@media (min-width: 375px) {
+  .drawer-content {
+    width: 462px;
+  }
+}

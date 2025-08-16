@@ -23,12 +23,10 @@ export default function InsightCard({ insight }: { insight: Insight }) {
   const handleExpand = async () => {
     if (!insight.canExpand) return;
     setOpen(true);
-
     if (!details && insight.id === "electoralRoll") {
       try {
         setLoading(true);
         setError(null);
-        // 🔽 Client-side call -> api.ts -> http.ts (axios)
         const data = await fetchInsightDetails();
         setDetails(data);
       } catch (e: any) {
@@ -42,19 +40,36 @@ export default function InsightCard({ insight }: { insight: Insight }) {
   return (
     <>
       <Card>
-        <div className="flex items-center gap-cs-8 mb-cs-10">
+        <div className="flex items-center gap-cs-8 mb-cs-16">
           <Pill tone={isOn ? "green" : "orange"}>{insight.status}</Pill>
           <Pill tone="gray">{insight.impact}</Pill>
         </div>
 
-        <h3 className="text-cs-16 font-bold text-midnight mb-cs-10">{insight.title}</h3>
-        <p className="text-cs-14 leading-5 text-ink-muted">{insight.body}</p>
+        {/* Title 16/bold/20px lh */}
+        <h3
+          className="
+            text-[16px] leading-[20px] font-bold
+            text-midnight font-clarity-bold
+            mb-cs-10
+            max-w-[368px]
+          "
+        >
+          {insight.title}
+        </h3>
 
+        {/* Body 14/20px lh muted */}
+        <p className="text-cs-14 leading-5 text-ink-muted">
+          {insight.body}
+        </p>
+
+        {/* Optional action */}
         {insight.canExpand && (
           <button
             onClick={handleExpand}
-            className="self-start mt-cs-8 text-cs-14 underline underline-offset-2 decoration-1
-                       text-cta hover:text-cta-hover focus:outline-none focus:ring-2 focus:ring-cta/30 rounded-cs-sm"
+            className="
+              self-start mt-cs-8 text-cs-14 underline underline-offset-2 decoration-1
+              text-cta hover:text-cta-hover focus:outline-none focus:ring-2 focus:ring-cta/30 rounded-cs-sm
+            "
             aria-haspopup="dialog"
             aria-expanded={open}
           >
@@ -63,7 +78,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
         )}
       </Card>
 
-      <Drawer open={open} onClose={() => setOpen(false)} maxWidth={480}>
+      <Drawer open={open} onClose={() => setOpen(false)}>
         <header className="flex items-center justify-between mb-cs-16">
           <Pill tone={isOn ? "green" : "orange"}>{insight.status}</Pill>
           <button
@@ -80,7 +95,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
 
         {!loading && !error && details && (
           <>
-            <h4 className="text-cs-16 font-bold text-midnight mb-cs-8">
+            <h4 className="text-cs-16 leading-5 font-bold text-midnight mb-cs-8">
               {details.title}
             </h4>
             <p className="text-cs-14 leading-5 text-ink-muted mb-cs-16">
@@ -89,8 +104,12 @@ export default function InsightCard({ insight }: { insight: Insight }) {
             <div className="space-y-cs-16">
               {details.details.map((sec, i) => (
                 <section key={i}>
-                  <h5 className="text-cs-16 font-bold text-midnight mb-cs-8">{sec.title}</h5>
-                  <p className="text-cs-14 leading-5 text-ink-muted">{sec.description}</p>
+                  <h5 className="text-cs-16 leading-5 font-bold text-midnight mb-cs-8">
+                    {sec.title}
+                  </h5>
+                  <p className="text-cs-14 leading-5 text-ink-muted">
+                    {sec.description}
+                  </p>
                 </section>
               ))}
             </div>
