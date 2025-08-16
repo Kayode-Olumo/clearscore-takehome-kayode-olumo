@@ -1,0 +1,100 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+  --bp-small: 375px;
+  --bp-medium: 768px;
+  --bp-large: 1024px;
+  --bp-xlarge: 1280px;
+  color-scheme: light;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  
+  /* Custom colors */
+  --color-midnight: #253648;
+  --color-gallery: #F7F7F8;
+  --color-cta: #0F81A3;
+  --color-cta-hover: #66AEC5;
+  --color-pill-green-text: #15693B;
+  --color-pill-green-bg: #DDF9EA;
+  --color-pill-orange-text: #764C25;
+  --color-pill-orange-bg: #FDEFE2;
+  --color-pill-gray-bg: #EEEFF1;
+  --color-ink-muted: #74808A;
+  
+  /* Custom spacing */
+  --spacing-cs-24: 24px;
+  --spacing-cs-16: 16px;
+  --spacing-cs-10: 10px;
+  --spacing-cs-8: 8px;
+  --spacing-cs-4: 4px;
+  
+  /* Custom border radius */
+  --radius-cs: 8px;
+  --radius-cs-sm: 4px;
+  
+  /* Custom font sizes */
+  --font-size-cs-20: 20px;
+  --font-size-cs-16: 16px;
+  --font-size-cs-14: 14px;
+  --font-size-cs-12: 12px;
+  
+  /* Custom breakpoints */
+  --breakpoint-small: 375px;
+  --breakpoint-medium: 768px;
+  --breakpoint-large: 1024px;
+  --breakpoint-xlarge: 1280px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom box shadow */
+.shadow-cs {
+  box-shadow: 0 0.5rem 0.75rem rgba(0,0,0,0.16);
+}
+
+/* Custom keyframes */
+@keyframes slide-in-right {
+  0% {
+    transform: translateX(16px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Custom animation */
+.animate-slide-in-right {
+  animation: slide-in-right 240ms ease-out;
+}
+
+@layer base {
+  body { @apply bg-white text-midnight; }
+}
+
+@layer utilities {
+  .horizontal-scroll::-webkit-scrollbar { height: 8px; }
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,0.08);
+    border-radius: 8px;
+  }
+}
