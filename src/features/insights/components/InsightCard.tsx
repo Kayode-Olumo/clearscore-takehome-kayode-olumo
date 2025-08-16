@@ -26,7 +26,6 @@ export default function InsightCard({ insight }: { insight: Insight }) {
       try {
         setLoading(true);
         setError(null);
-        // 👉 Replace with real fetch if needed
         const res = await fetch("https://api.jsonbin.io/v3/b/6128c389c5159b35ae04d4ed/1?meta=false");
         if (!res.ok) throw new Error("Failed to load details");
         const data = (await res.json()) as InsightDetails;
