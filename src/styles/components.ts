@@ -19,7 +19,7 @@ export const cardStyles = {
     "text-midnight font-clarity-bold",
     "mb-cs-10 max-w-[368px]"
   ),
-  body: "text-cs-14 leading-5 pb-cs-8",
+  body: "text-cs-14 leading-5 font-normal pb-cs-8",
   link: cn(
     "self-start mt-cs-8 text-cs-14 no-underline hover:underline underline-offset-2 decoration-1",
     "text-cta hover:text-cta-hover focus:outline-none focus:ring-2 focus:ring-cta/30 rounded-cs-sm cursor-pointer"
@@ -32,7 +32,7 @@ export const cardStyles = {
 
 export const insightStyles = {
   container: "min-h-screen p-cs-16 small:p-cs-20 medium:p-cs-24 bg-gallery",
-  title: "text-cs-20 font-bold mb-cs-16",
+  title: "text-[24px] font-bold mb-cs-16 text-midnight font-clarity-bold small:px-cs-20 medium:px-cs-24",
   grid: {
     mobile: cn(
       "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-16",
@@ -57,9 +57,9 @@ export const drawerStyles = {
   ),
   content: {
     title: "text-cs-16 leading-5 font-bold text-midnight mb-cs-8",
-    description: "text-cs-14 leading-5 text-ink-muted mb-cs-16 pb-cs-8",
+    description: "text-cs-14 leading-5 font-normal text-ink-muted mb-cs-16 pb-cs-8",
     section: "space-y-cs-16",
     sectionTitle: "text-cs-16 leading-5 font-bold text-midnight mb-cs-8",
-    sectionText: "text-cs-14 leading-5 text-ink-muted",
+    sectionText: "text-cs-14 leading-5 font-normal text-ink-muted",
   },
 };
