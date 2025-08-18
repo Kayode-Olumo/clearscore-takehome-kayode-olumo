@@ -55,43 +55,6 @@ Clicking the Electoral Roll card loads and displays additional details. The draw
 
 ---
 
-## Project Structure
-
-```
-src/
- ├─ app/                  # Next.js App Router
- │   ├─ layout.tsx
- │   ├─ page.tsx
- │   └─ globals.css       # Tailwind + custom design tokens
- │
- ├─ features/
- │   └─ insights/         # Insights feature
- │       ├─ components/
- │       │   ├─ InsightsSection.tsx
- │       │   ├─ InsightCard.tsx
- │       │   └─ __tests__/
- │       ├─ lib/
- │       │   ├─ insights.ts      # Business logic
- │       │   ├─ hooks.ts         # Custom hooks
- │       │   └─ types.ts         # TypeScript types
- │       └─ index.ts
- │
- ├─ ui/
- │   └─ elements/         # Reusable design system elements
- │       ├─ Card.tsx
- │       ├─ Pill.tsx
- │       └─ Drawer.tsx
- │
- ├─ lib/
- │   ├─ api.ts            # API calls
- │   └─ http.ts           # Axios instance
- │
- └─ styles/
-     └─ components.ts     # Component specific styles
-```
-
----
-
 ## Getting Started
 
 1. **Clone the repo:**
