@@ -56,7 +56,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
           {insight.title}
         </h3>
 
-        <p className="text-cs-14 leading-5 text-ink-muted">
+        <p className="text-cs-14 leading-5" style={{ color: 'var(--color-ink-muted)' }}>
           {insight.body}
         </p>
 

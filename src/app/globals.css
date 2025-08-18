@@ -91,7 +91,7 @@ body {
 }
 
 @layer utilities {
-  .horizontal-scroll::-webkit-scrollbar { height: 8px; }
+  .horizontal-scroll::-webkit-scrollbar { height: var(--spacing-cs-10); }
   .horizontal-scroll::-webkit-scrollbar-thumb {
     background: rgba(0,0,0,0.08);
     border-radius: 8px;

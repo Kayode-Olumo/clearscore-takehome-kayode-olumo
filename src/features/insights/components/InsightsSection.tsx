@@ -13,7 +13,7 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
               key={i.id}
               className="
                 snap-start shrink-0
-                min-w-[46%] medium:min-w-[44%]   /* ~2 cards visible + peek */
+                min-w-[46%] medium:min-w-[44%] 
               "
             >
               <div className="h-full">
