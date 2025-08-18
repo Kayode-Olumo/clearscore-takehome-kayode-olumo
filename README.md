@@ -4,7 +4,7 @@
 
 This is my submission for the ClearScore tech test. The task was to implement a small, production-ready slice of a design system that powers an "Insights" feature. The goal was to show how I structure a Next.js application, handle business logic, and implement designs in a clean and maintainable way.
 
-The feature focuses on three insights — Public information, Credit utilisation, and Electoral roll — each displayed as cards that adapt to screen size. Logic is driven by the credit report JSON, with conditional styling and language for "On Track" / "Off Track" states. As a stretch, clicking the Electoral Roll card opens a drawer with additional details from a secondary dataset.
+The feature focuses on three insights: Public information, Credit utilisation, and Electoral roll, each displayed as cards that adapt to screen size. Logic is driven by the credit report JSON, with conditional styling and language for "On Track" / "Off Track" states. As a stretch, clicking the Electoral Roll card opens a drawer with additional details from a secondary dataset.
 
 ---
 
