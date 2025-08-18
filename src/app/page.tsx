@@ -1,6 +1,7 @@
 import { fetchCreditReport } from "@/lib/api";
 import { generateInsights } from "@/features/insights/lib/insights";
 import InsightsSection from "@/features/insights/components/InsightsSection";
+import { insightStyles } from "@/styles/components";
 
 export default async function Page() {
   let report: any = null;
@@ -13,8 +14,8 @@ export default async function Page() {
   const insights = generateInsights(report ?? {});
 
   return (
-    <main className="min-h-screen p-cs-16 medium:p-cs-24 bg-gallery">
-      <h1 className="text-cs-20 font-bold mb-cs-16">Insights</h1>
+    <main className={insightStyles.container}>
+      <h1 className={insightStyles.title}>Insights</h1>
       <InsightsSection insights={insights} />
     </main>
   );
