@@ -1,7 +1,6 @@
 import { generateInsights, loadInsightDetails } from '../insights'
 import type { CreditReport } from '../types'
 
-// Mock the API module
 jest.mock('@/lib/api', () => ({
   fetchInsightDetails: jest.fn()
 }))
@@ -172,7 +171,6 @@ describe('generateInsights', () => {
       accounts: [
         {
           accountCategory: 'credit_cards'
-          // Missing overview
         }
       ],
       personal: {
