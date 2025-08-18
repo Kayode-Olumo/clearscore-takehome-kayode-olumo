@@ -47,7 +47,6 @@ export function generateInsights(creditReport: CreditReport): Insight[] {
   ];
 }
 
-// Insight details management
 export type InsightDetails = {
   title: string;
   onTrackDescription: string;
