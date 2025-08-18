@@ -3,21 +3,12 @@
 import { useState } from "react";
 import { Card, Pill, Drawer } from "@/ui";
 import type { Insight } from "../lib/types";
-import { fetchInsightDetails } from "@/lib/api";
+import { useInsightDetails } from "../lib/hooks";
 import { cardStyles, drawerStyles } from "@/styles/components";
-
-type InsightDetails = {
-  title: string;
-  onTrackDescription: string;
-  offTrackDescription: string;
-  details: { title: string; description: string }[];
-};
 
 export default function InsightCard({ insight }: { insight: Insight }) {
   const [open, setOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [details, setDetails] = useState<InsightDetails | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const { details, loading, error, fetchDetails } = useInsightDetails();
 
   const isOn = insight.status === "On Track";
 
@@ -25,16 +16,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
     if (!insight.canExpand) return;
     setOpen(true);
     if (!details && insight.id === "electoralRoll") {
-      try {
-        setLoading(true);
-        setError(null);
-        const data = await fetchInsightDetails();
-        setDetails(data);
-      } catch (e: any) {
-        setError(e?.message ?? "Failed to load details");
-      } finally {
-        setLoading(false);
-      }
+      await fetchDetails(insight.id);
     }
   };
 
@@ -58,7 +40,7 @@ export default function InsightCard({ insight }: { insight: Insight }) {
             {insight.canExpand && (
               <button
                 onClick={handleExpand}
-                className={cardStyles.link}
+                className={cardStyles.linkMobile}
                 aria-haspopup="dialog"
                 aria-expanded={open}
               >

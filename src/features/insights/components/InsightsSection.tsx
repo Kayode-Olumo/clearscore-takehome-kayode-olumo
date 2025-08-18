@@ -7,7 +7,6 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
     <section aria-labelledby="insights-title">
       <h2 id="insights-title" className="sr-only">Insights</h2>
 
-      {/* Mobile view (default) */}
       <div className="small:hidden">
         <div className={insightStyles.grid.mobile}>
           <div className="snap-start shrink-0 w-cs-1" />
@@ -22,7 +21,6 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
         </div>
       </div>
 
-      {/* Small view (375px+) */}
       <div className="hidden small:block medium:hidden">
         <div className={insightStyles.grid.small}>
           <div className="snap-start shrink-0 w-cs-1" />
@@ -37,7 +35,6 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
         </div>
       </div>
 
-      {/* Medium view (768px+) */}
       <div className="hidden medium:block large:hidden">
         <div className={insightStyles.grid.small}>
           <div className="snap-start shrink-0 w-cs-1" />
@@ -52,7 +49,6 @@ export default function InsightsSection({ insights }: { insights: Insight[] }) {
         </div>
       </div>
 
-      {/* Large view (1024px+) and Extra Large view (1280px+) */}
       <div className={insightStyles.grid.desktop}>
         {insights.map((i) => (
           <div key={i.id} className={insightStyles.item.desktop}>

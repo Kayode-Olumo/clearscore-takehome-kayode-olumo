@@ -1,4 +1,5 @@
 import type { CreditReport, Insight, InsightStatus } from "./types";
+import { fetchInsightDetails } from "@/lib/api";
 
 const status = (ok: boolean): InsightStatus => (ok ? "On Track" : "Off Track");
 
@@ -44,4 +45,21 @@ export function generateInsights(creditReport: CreditReport): Insight[] {
       canExpand: true,
     },
   ];
+}
+
+// Insight details management
+export type InsightDetails = {
+  title: string;
+  onTrackDescription: string;
+  offTrackDescription: string;
+  details: { title: string; description: string }[];
+};
+
+export async function loadInsightDetails(insightId: string): Promise<InsightDetails> {
+  if (insightId !== "electoralRoll") {
+    throw new Error("Only electoral roll insights can be expanded");
+  }
+  
+  const data = await fetchInsightDetails();
+  return data;
 }

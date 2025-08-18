@@ -12,9 +12,7 @@ export const cardStyles = {
     "flex flex-col"
   ),
   header: "flex items-center gap-cs-8 mb-cs-16",
-  // Mobile/Small/Medium: Impact at bottom, full width
   headerMobile: "flex items-center gap-cs-8 mb-cs-16",
-  // Desktop: Impact in header
   headerDesktop: "flex items-center gap-cs-8 mb-cs-16",
   title: cn(
     "text-[16px] leading-[20px] font-bold",
@@ -26,6 +24,10 @@ export const cardStyles = {
     "self-start mt-cs-8 text-cs-14 no-underline hover:underline underline-offset-2 decoration-1",
     "text-cta hover:text-cta-hover focus:outline-none focus:ring-2 focus:ring-cta/30 rounded-cs-sm cursor-pointer"
   ),
+  linkMobile: cn(
+    "self-center mt-cs-8 text-cs-14 no-underline hover:underline underline-offset-2 decoration-1",
+    "text-cta hover:text-cta-hover focus:outline-none focus:ring-2 focus:ring-cta/30 rounded-cs-sm cursor-pointer"
+  ),
 };
 
 export const insightStyles = {
@@ -33,12 +35,12 @@ export const insightStyles = {
   title: "text-cs-20 font-bold mb-cs-16",
   grid: {
     mobile: cn(
-      "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-8",
+      "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-16",
       "horizontal-scroll [-webkit-overflow-scrolling:touch]"
     ),
     small: cn(
-      "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-8",
-      "horizontal-scroll [-webkit-overflow-scrolling:touch]"
+      "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-16",
+      "horizontal-scroll [-webkit-overflow-scrolling:touch] scrollbar-hide"
     ),
     desktop: "hidden large:grid large:grid-cols-2 xlarge:grid-cols-3 large:gap-4",
   },
