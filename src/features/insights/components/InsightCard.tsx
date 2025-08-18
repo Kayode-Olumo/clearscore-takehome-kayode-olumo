@@ -41,29 +41,62 @@ export default function InsightCard({ insight }: { insight: Insight }) {
   return (
     <>
       <Card>
-        <div className={cardStyles.header}>
-          <Pill tone={isOn ? "green" : "orange"}>{insight.status}</Pill>
-          <Pill tone="gray">{insight.impact}</Pill>
+        <div className="large:hidden flex flex-col h-full">
+          <div className="flex-1">
+            <div className={cardStyles.headerMobile}>
+              <Pill tone={isOn ? "green" : "orange"}>{insight.status}</Pill>
+            </div>
+
+            <h3 className={cardStyles.title}>
+              {insight.title}
+            </h3>
+
+            <p className={cardStyles.body} style={{ color: 'var(--color-ink-muted)' }}>
+              {insight.body}
+            </p>
+
+            {insight.canExpand && (
+              <button
+                onClick={handleExpand}
+                className={cardStyles.link}
+                aria-haspopup="dialog"
+                aria-expanded={open}
+              >
+                Learn more
+              </button>
+            )}
+          </div>
+
+          <div className="pt-cs-8 w-full">
+            <Pill tone="gray" fullWidth>{insight.impact}</Pill>
+          </div>
         </div>
 
-        <h3 className={cardStyles.title}>
-          {insight.title}
-        </h3>
+        <div className="hidden large:block">
+          <div className={cardStyles.headerDesktop}>
+            <Pill tone={isOn ? "green" : "orange"}>{insight.status}</Pill>
+            <Pill tone="gray">{insight.impact}</Pill>
+          </div>
 
-        <p className={cardStyles.body} style={{ color: 'var(--color-ink-muted)' }}>
-          {insight.body}
-        </p>
+          <h3 className={cardStyles.title}>
+            {insight.title}
+          </h3>
 
-        {insight.canExpand && (
-          <button
-            onClick={handleExpand}
-            className={cardStyles.link}
-            aria-haspopup="dialog"
-            aria-expanded={open}
-          >
-            Learn more
-          </button>
-        )}
+          <p className={cardStyles.body} style={{ color: 'var(--color-ink-muted)' }}>
+            {insight.body}
+          </p>
+
+          {insight.canExpand && (
+            <button
+              onClick={handleExpand}
+              className={cardStyles.link}
+              aria-haspopup="dialog"
+              aria-expanded={open}
+            >
+              Learn more
+            </button>
+          )}
+        </div>
       </Card>
 
       <Drawer open={open} onClose={() => setOpen(false)}>

@@ -12,6 +12,10 @@ export const cardStyles = {
     "flex flex-col"
   ),
   header: "flex items-center gap-cs-8 mb-cs-16",
+  // Mobile/Small/Medium: Impact at bottom, full width
+  headerMobile: "flex items-center gap-cs-8 mb-cs-16",
+  // Desktop: Impact in header
+  headerDesktop: "flex items-center gap-cs-8 mb-cs-16",
   title: cn(
     "text-[16px] leading-[20px] font-bold",
     "text-midnight font-clarity-bold",
@@ -25,17 +29,21 @@ export const cardStyles = {
 };
 
 export const insightStyles = {
-  container: "min-h-screen p-cs-16 medium:p-cs-24 bg-gallery",
+  container: "min-h-screen p-cs-16 small:p-cs-20 medium:p-cs-24 bg-gallery",
   title: "text-cs-20 font-bold mb-cs-16",
   grid: {
     mobile: cn(
       "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-8",
       "horizontal-scroll [-webkit-overflow-scrolling:touch]"
     ),
+    small: cn(
+      "flex gap-4 overflow-x-auto snap-x snap-mandatory pb-cs-8",
+      "horizontal-scroll [-webkit-overflow-scrolling:touch]"
+    ),
     desktop: "hidden large:grid large:grid-cols-2 xlarge:grid-cols-3 large:gap-4",
   },
   item: {
-    mobile: "snap-start shrink-0 min-w-[46%] medium:min-w-[44%]",
+    mobile: "snap-start shrink-0 w-[160px] small:w-[170px] medium:w-[350px]",
     desktop: "h-full",
   },
 };
