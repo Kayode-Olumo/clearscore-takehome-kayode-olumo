@@ -1,147 +1,153 @@
-# ClearScore Insights Application
+# Books and Authors Collection App
 
-## Introduction
+## What's This About?
 
-This is my submission for the ClearScore tech test. The task was to implement a small, production-ready slice of a design system that powers an "Insights" feature. The goal was to show how I structure a Next.js application, handle business logic, and implement designs in a clean and maintainable way.
+I built a simple app to help you keep track of your favourite books and authors. It's got two tabs - one for adding books and another for authors - with some nice touches like dropdown menus and validation to make sure you don't miss anything important.
 
-The feature focuses on three insights: Public information, Credit utilisation, and Electoral roll, each displayed as cards that adapt to screen size. Logic is driven by the credit report JSON, with conditional styling and language for "On Track" / "Off Track" states. As a stretch, clicking the Electoral Roll card opens a drawer with additional details from a secondary dataset.
-
----
-
-## Solution Overview
-
-This project demonstrates:
-- **Responsive Layouts**: Cards are horizontally scrollable on small and medium screens, and displayed in a grid on larger screens.
-- **Design System Elements**: Reusable components such as Card, Pill, and Drawer are placed in a `ui/elements` folder to form the foundation of a design system.
-- **Business Logic**: On/off track states are derived directly from the provided credit report JSON.
-- **Data Integration**: 
-  - The credit report is fetched from the provided API.
-  - Additional insight details are retrieved for the Electoral Roll card from a second API.
-- **Scalable Structure**: The codebase is organised into features, ui, lib, and styles folders, making it easy to extend and maintain.
-- **Styling**: Tailwind CSS is used with custom design tokens and utility classes to stay consistent with the design spec.
+The whole thing is designed to work well on your phone, tablet, or computer, and I've tried to make it feel smooth and easy to use.
 
 ---
 
-## Approach
+## What It Does
 
-### 1. Design System First
-Broke the UI into reusable primitives (Card, Pill, Drawer) under `src/ui/elements`. Each maps directly to values defined in the design tokens.
-
-### 2. Feature Encapsulation
-All insight-related code is grouped in `src/features/insights`, keeping business logic, API calls, and rendering self-contained.
-
-### 3. Responsive Layouts
-- **Small/Medium**: Horizontal scroll with two cards fully visible and part of a third.
-- **Large/X-Large**: Grid layout with equal card height and consistent spacing.
-
-### 4. Business Logic
-- **Public Info**: Off track if any CCJs or insolvencies exist.
-- **Credit Utilisation**: Off track if balance is at least 50% of limit.
-- **Electoral Roll**: Off track if the user is not currently registered.
-
-### 5. Drawer Interaction
-Clicking the Electoral Roll card loads and displays additional details. The drawer spans the full width on mobile, but becomes a right-hand panel from medium breakpoint upwards.
+Here's what you'll find:
+- **Works everywhere**: Looks great on mobile and desktop
+- **Smart dropdowns**: Pick multiple genres for books, select years from scrollable lists
+- **Helpful validation**: It'll let you know if you've missed something and clear errors as you fix them
+- **Nice feedback**: Toast notifications pop up when you successfully add something
+- **Clean design**: Split-screen layout with a lovely gradient background
 
 ---
 
-## Tech Stack
+## How I Built It
 
-- **Framework**: Next.js 15 (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS v4 (with custom design tokens)
-- **HTTP Client**: Axios (wrapped in `lib/http.ts`)
-- **Testing**: Jest with React Testing Library
-- **Utilities**: clsx, tailwind-merge for class management
+### The Structure
+I've split everything into reusable pieces - custom hooks for the logic and components for the UI bits. This makes it easier to maintain and test.
+
+### Forms That Actually Help
+- Each form (books and authors) manages its own data
+- Validation happens in real-time - fix an error and it disappears
+- The genre picker lets you select multiple options and shows them as little chips
+
+### Making It Feel Good
+- Toast notifications slide in when you submit something
+- Everything responds nicely to clicks and hovers
+- The layout adapts smoothly from desktop to mobile
+
+### What Goes Where
+- **Books**: Title, genres (multi-select), and publication year (1800 onwards)
+- **Authors**: First name, last name, and birth year (1900 onwards)
+- All fields are validated and required
 
 ---
 
-## Getting Started
+## Tech I Used
 
-1. **Clone the repo:**
-   ```bash
-   git clone https://github.com/Kayode-Olumo/clearscore-takehome-kayode-olumo.git
-   cd clearscore-takehome-kayode-olumo
-   ```
+- **Next.js 15** - The React framework
+- **TypeScript** - For catching mistakes early
+- **Tailwind CSS** - For styling without the headache
+- **Custom React hooks** - To keep the logic tidy
 
-2. **Install dependencies:**
-   ```bash
+---
+
+## Getting It Running
+
+1. **Grab the code:**
+   \`\`\`bash
+   git clone <your-repo-url>
+   cd books-authors-app
+   \`\`\`
+
+2. **Install the bits:**
+   \`\`\`bash
    npm install
-   ```
+   \`\`\`
 
-3. **Set up environment variables:**
-   Create a `.env.local` file with:
-   ```
-   NEXT_PUBLIC_REPORT_URL=your_credit_report_api_url
-   NEXT_PUBLIC_INSIGHT_DETAILS_URL=your_insight_details_api_url
-   NEXT_PUBLIC_API_BASE_URL=your_api_base_url
-   ```
-
-4. **Run the dev server:**
-   ```bash
+3. **Fire it up:**
+   \`\`\`bash
    npm run dev
-   ```
+   \`\`\`
 
-5. **Open http://localhost:3000** in your browser.
-
-## Live Preview
-
-You can also view the live application at: [https://clearscore-takehome-kayode-olumo.vercel.app/](https://clearscore-takehome-kayode-olumo.vercel.app/)
+4. **Check it out at http://localhost:3000**
 
 ---
 
-## Testing
+## What's Where
 
-The project includes component and business logic tests:
-
-```bash
-# Run all tests
-npm test
-
-# Run tests in watch mode
-npm run test:watch
-
-# Run tests with coverage
-npm run test:coverage
-```
-
----
-
-## Design System
-
-The application uses a custom design system with:
-- **Design Tokens**: Defined in `globals.css` with CSS custom properties
-- **Component Styles**: Centralized in `styles/components.ts` using Tailwind utilities
-- **Responsive Breakpoints**: Custom breakpoints (small: 375px, medium: 768px, large: 1024px, xlarge: 1280px)
-- **Typography**: Custom font sizes and ClearScore Clarity font family
-- **Spacing**: Consistent spacing scale using CSS custom properties
+\`\`\`
+├── app/
+│   ├── page.tsx              # The main app
+│   ├── layout.tsx            # Page wrapper
+│   └── globals.css           # Styles
+├── components/
+│   ├── toast.tsx             # Success messages
+│   ├── multi-select-dropdown.tsx  # Genre picker
+│   └── year-dropdown.tsx     # Year selector
+├── hooks/
+│   ├── use-form-validation.ts # Form checking logic
+│   ├── use-toast.ts          # Toast message handling
+│   └── use-dropdown.ts       # Dropdown behaviour
+└── components/ui/            # Basic UI components
+\`\`\`
 
 ---
 
-## Notes and Considerations
+## The Good Bits
 
-- **Timeboxed**: Approximately four hours, in line with the brief.
-- **Fonts**: CSClarity-Regular and CSClarity-Bold are referenced but mocked locally. In a production environment they would be embedded or imported properly.
-- **Styling**: Follows the provided tokens, though fine-tuning against the official ClearScore design system may be required.
-- **Error Handling**: Basic error handling for API failures and loading states.
-- **Accessibility**: ARIA attributes and semantic HTML for the drawer component.
+### Books Section
+- Type in any book title
+- Pick from 14 different genres (you can choose several)
+- Select publication year from 1800 to now
+
+### Authors Section  
+- Add first and last names
+- Pick birth year from 1900 to present
+
+### Nice Touches
+- Switch between tabs easily
+- Errors show up when you submit, disappear when you fix them
+- Success messages slide in smoothly
+- Your data gets shown as JSON (for now)
+- Everything works on mobile
 
 ---
 
-## Future Improvements
+## Design Choices
 
-If I had more time, I would focus on three main areas:
+I went for a clean, friendly look:
+- **Colours**: Mint green for books, soft purple for authors
+- **Typography**: Bold headings with some italic flair
+- **Layout**: Plenty of breathing room, consistent spacing
+- **Interactions**: Smooth hover effects and focus states
 
-### UX polish
-- Add loading skeletons while data is being fetched.
-- Refine the drawer with better transitions, focus management, and escape key support.
-- Improve hover and active states for interactive elements.
+---
 
-### Performance
-- Introduce caching with SWR or React Query to reduce unnecessary API calls.
-- Add error boundaries to handle failures gracefully.
-- Optimise the horizontal scroll experience on mobile.
+## Things to Know
 
-### Testing / QA
-- Expand test coverage to include more edge cases.
-- Add integration tests for the drawer interaction.
-- Run accessibility checks (axe, Lighthouse) to ensure compliance.
+- **No saving yet**: Your data disappears when you refresh (perfect for testing though!)
+- **Client-side only**: All validation happens in your browser
+- **Modern browsers**: You'll need something reasonably recent
+- **Accessible**: I've added proper labels and keyboard support
+
+---
+
+## What I'd Add Next
+
+Given more time, here's what I'd love to improve:
+
+### Better Data Handling
+- Save your books and authors locally
+- Add a proper database
+- Auto-save as you type
+
+### Even Nicer Experience
+- Loading spinners for submissions
+- Confirmation before clearing forms
+- Keyboard shortcuts
+- Better mobile gestures
+
+### Quality Stuff
+- Proper testing suite
+- Accessibility audit
+- Performance optimisation
+- Error tracking
